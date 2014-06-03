@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RuleTestModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="RuleTestModelStoreContainer">
+          <EntitySet Name="massinsert" EntityType="RuleTestModel.Store.massinsert" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="shapes" EntityType="RuleTestModel.Store.shapes" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="massinsert">
+          <Key>
+            <PropertyRef Name="id_mass" />
+          </Key>
+          <Property Name="id_mass" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="shape" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_valid" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="shapes">
+          <Key>
+            <PropertyRef Name="id_shape" />
+          </Key>
+          <Property Name="id_shape" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="coordinates" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="area" Type="float" Nullable="false" />
+          <Property Name="date_created" Type="datetime" Nullable="false" />
+          <Property Name="is_valid" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <Function Name="MassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RuleTestModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="RuleTestEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="MassUpdate" />
+          <EntitySet Name="massinserts" EntityType="RuleTestModel.massinsert" />
+          <EntitySet Name="shapes" EntityType="RuleTestModel.shape" />
+        </EntityContainer>
+        <EntityType Name="massinsert">
+          <Key>
+            <PropertyRef Name="id_mass" />
+          </Key>
+          <Property Type="Int32" Name="id_mass" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="shape" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="is_valid" />
+        </EntityType>
+        <EntityType Name="shape">
+          <Key>
+            <PropertyRef Name="id_shape" />
+          </Key>
+          <Property Type="Int32" Name="id_shape" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="coordinates" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Double" Name="area" Nullable="false" />
+          <Property Type="DateTime" Name="date_created" Nullable="false" />
+          <Property Type="Byte" Name="is_valid" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RuleTestModelStoreContainer" CdmEntityContainer="RuleTestEntities">
+          <FunctionImportMapping FunctionImportName="MassUpdate" FunctionName="RuleTestModel.Store.MassUpdate" />
+          <EntitySetMapping Name="massinserts">
+            <EntityTypeMapping TypeName="RuleTestModel.massinsert">
+              <MappingFragment StoreEntitySet="massinsert">
+                <ScalarProperty Name="is_valid" ColumnName="is_valid" />
+                <ScalarProperty Name="shape" ColumnName="shape" />
+                <ScalarProperty Name="id_mass" ColumnName="id_mass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shapes">
+            <EntityTypeMapping TypeName="RuleTestModel.shape">
+              <MappingFragment StoreEntitySet="shapes">
+                <ScalarProperty Name="is_valid" ColumnName="is_valid" />
+                <ScalarProperty Name="date_created" ColumnName="date_created" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="coordinates" ColumnName="coordinates" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_shape" ColumnName="id_shape" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model" ZoomLevel="81">
+        <EntityTypeShape EntityType="RuleTestModel.massinsert" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="RuleTestModel.shape" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
